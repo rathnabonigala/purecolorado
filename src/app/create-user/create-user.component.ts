@@ -1,20 +1,26 @@
-import { Component } from '@angular/core';
-import {User} from '../user';
-import {UserService} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { User } from '../user';
+import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms'; 
+import { CommonModule } from '@angular/common';
+
+
 @Component({
   selector: 'app-create-user',
-  imports: [],
+  imports: [CommonModule,ReactiveFormsModule], 
   templateUrl: './create-user.component.html',
-  styleUrl: './create-user.component.css'
+  styleUrls: ['./create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
-  User: User = new User();
-  constructor(private UserService: UserService,
+
+  user: User = new User();
+  constructor(private userService: UserService,
     private router: Router) { }
 
   ngOnInit(): void {
   }
+
   saveUser(){
     this.userService.createUser(this.user).subscribe( data =>{
       console.log(data);
@@ -22,6 +28,7 @@ export class CreateUserComponent implements OnInit {
     },
     error => console.log(error));
   }
+
   goToUserList(){
     this.router.navigate(['/users']);
   }
@@ -30,8 +37,4 @@ export class CreateUserComponent implements OnInit {
     console.log(this.user);
     this.saveUser();
   }
-
-  }
-
-
 }

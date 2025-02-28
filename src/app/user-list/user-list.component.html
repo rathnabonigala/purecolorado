@@ -1,1 +1,17 @@
-
+<div class="container mt-4">
+    <div *ngFor="let user of users" class="card mb-3">
+      
+      <div class="card-body">
+        <h5 class="card-title">{{ user.firstName }}</h5>
+        <p class="card-text">{{ user.lastName }}</p>
+        <p class="card-text"><small class="text-muted">{{ user.emailId }}</small></p>
+        <button class="btn btn-primary">Add User</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="users.length === 0" class="container mt-4">
+    <p class="text-center">The list of users not available!</p>
+  </div>
+  
+  
+  

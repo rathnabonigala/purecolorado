@@ -1,1 +1,30 @@
-<p>update-user works!</p>
+<div class="row">
+    <div class="card col-md-6 offset-md-3">
+        <div class="row">
+            <h3 class="text-center">Update User</h3>
+            <hr />
+            <div class="card-body">
+                <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" id="firstName" formControlName="firstName">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" id="lastName" formControlName="lastName">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Id</label>
+                        <input type="text" class="form-control" id="emailId" formControlName="emailId">
+                    </div>
+                    <br />
+                    <button class="btn btn-success" type="submit" [disabled]="userForm.invalid">Submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

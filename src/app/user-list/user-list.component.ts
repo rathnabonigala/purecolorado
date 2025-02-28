@@ -1,11 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { User } from '../user';
+import { UserService } from '../user.service';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.css'
+  styleUrls: ['./user-list.component.css']
 })
-export class UserListComponent {
+export class UserListComponent implements OnInit {
+  users: User[] = [];
 
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.getUsers();
+  }
+
+  private getUsers() {
+    this.userService.getUsersList().subscribe(data => {
+      console.log('Received users:', data);
+      this.users = data;
+    });
+  }
 }
