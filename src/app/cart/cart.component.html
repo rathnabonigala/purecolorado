@@ -1,0 +1,21 @@
+<!-- cart.component.html -->
+<div class="container mt-4">
+    <h2>Your Cart</h2>
+    <div *ngFor="let product of cart" class="card mb-3">
+      <img [src]="product.image" class="card-img-top" alt="{{ product.name }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+        <p class="card-text"><small class="text-muted">{{ product.price | currency }}</small></p>
+      </div>
+    </div>
+  
+    <div *ngIf="cart.length === 0" class="text-center">
+      <p>Your cart is empty!</p>
+    </div>
+    <div class="text-end mt-3" *ngIf="cart.length > 0">
+        <h5>Total Price: {{ totalPrice | currency }}</h5>
+        <button class="btn btn-success" (click)="placeOrder()">Proceed to Checkout</button>
+      </div>
+  </div>
+  

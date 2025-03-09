@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]], // Validate if username is not empty
-      password: ['', [Validators.required]], // Validate if password is not empty
+      password: ['', [Validators.required]],
+      role: ['', [Validators.required]] // Validate if password is not empty
     });
   }
 
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
 
       // Make POST request to backend for login
       this.http
-        .post<any>('http://localhost:8080/auth/login', { username, password })
+        .post<any>('http://localhost:8080/api/v1/users/login', { username, password })
         .pipe(
           catchError((error) => {
             this.errorMessage = 'Invalid username or password';

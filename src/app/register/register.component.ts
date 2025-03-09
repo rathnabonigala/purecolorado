@@ -21,7 +21,7 @@ export class RegisterComponent {
   });
 
   register() {
-    this.http.post('http://localhost:8080/auth/register', this.registerForm.value)
+    this.http.post('http://localhost:8080/api/v1/users/register', this.registerForm.value)
       .subscribe({
         next: () => {
           alert('Registration successful');

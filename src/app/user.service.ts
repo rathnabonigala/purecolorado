@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl = 'http://localhost:8080/auth'; // BMart API URL
+  private baseUrl = 'http://localhost:8080/api/users'; // BMart API URL
 
   constructor(private http: HttpClient) {}
 
