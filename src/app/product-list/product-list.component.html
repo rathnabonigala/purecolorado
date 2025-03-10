@@ -1,6 +1,11 @@
+
+<app-header></app-header>
+
 <div class="text-end mb-3">
   <button class="btn btn-outline-success" [routerLink]="['/cart']">View Cart</button>
 </div>
+
+
 <div class="container mt-4">
   <div *ngFor="let product of products" class="card mb-3">
     <img [src]="product.image" class="card-img-top" alt="{{ product.name }}">
@@ -16,3 +21,4 @@
 <div *ngIf="products.length === 0" class="container mt-4">
   <p class="text-center">No products available!</p>
 </div> 
+<app-footer></app-footer>

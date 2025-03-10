@@ -4,10 +4,12 @@ import { ProductService } from '../product.service';
 import { CommonModule } from '@angular/common';
 import {Router, RouterModule} from '@angular/router';
 import { CartService } from '../cart.service'; 
+import { HeaderComponent } from '../header/header.component'; 
+import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,HeaderComponent,FooterComponent],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
