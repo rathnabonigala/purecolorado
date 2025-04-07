@@ -1,24 +1,38 @@
-
 <app-header></app-header>
 
 <div class="text-end mb-3">
   <button class="btn btn-outline-success" [routerLink]="['/cart']">View Cart</button>
 </div>
 
-
 <div class="container mt-4">
   <div *ngFor="let product of products" class="card mb-3">
-    <img [src]="product.image" class="card-img-top" alt="{{ product.name }}">
+    <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}">
+
     <div class="card-body">
       <h5 class="card-title">{{ product.name }}</h5>
       <p class="card-text">{{ product.description }}</p>
       <p class="card-text"><small class="text-muted">{{ product.price | currency }}</small></p>
-      <button class="btn btn-primary"(click)="addToCart(product)">Add to Cart</button>
+      <button class="btn btn-primary" (click)="addToCart(product)">Add to Cart</button>
     </div>
-
   </div>
 </div>
+
+<div *ngFor="let product of products">
+  <div (click)="getProductById(product.id)">
+    <p>{{ product.name }}</p>
+    <p>{{ product.price | currency }}</p>
+  </div>
+</div>
+
+<div *ngIf="selectedProduct">
+  <h2>Selected Product</h2>
+  <p>ID: {{ selectedProduct.id }}</p>
+  <p>Name: {{ selectedProduct.name }}</p>
+  <p>Price: {{ selectedProduct.price | currency }}</p>
+</div>
+
 <div *ngIf="products.length === 0" class="container mt-4">
   <p class="text-center">No products available!</p>
-</div> 
+</div>
+
 <app-footer></app-footer>

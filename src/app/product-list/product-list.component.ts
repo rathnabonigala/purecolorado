@@ -3,7 +3,7 @@ import {Product} from '../product';
 import { ProductService } from '../product.service';
 import { CommonModule } from '@angular/common';
 import {Router, RouterModule} from '@angular/router';
-import { CartService } from '../cart.service'; 
+
 import { HeaderComponent } from '../header/header.component'; 
 import { FooterComponent } from '../footer/footer.component';
 @Component({
@@ -14,29 +14,40 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  products: Product[] = [];
-  constructor(private productService: ProductService,private cartService: CartService,private router: Router){}
+
+  products: Product[] = []; // This will store the list of products
+  selectedProduct: Product | null = null;
+
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.getProducts();
+    this.productService.getProductsList().subscribe(
+      (data: Product[]) => {
+        this.products = data;
+      },
+      (error) => {
+        console.error('Error fetching products:', error);
+      }
+    );
   }
 
-  private getProducts(){
-    
-    this.productService.getProductsList().subscribe(data => {
-      console.log('Received products:', data);
-      this.products = data;
-      
-    });
-  
+  // Method to handle product selection
+  getProductById(productId: number): void {
+    this.productService.getProductById(productId).subscribe(
+      (data: Product) => {
+        this.selectedProduct = data;
+      },
+      (error) => {
+        console.error('Error fetching product details:', error);
+      }
+    );
   }
-  addToCart(product: Product) {
-    this.cartService.addProduct(product);  // Add the product to the cart
-    alert(`${product.name} has been added to the cart!`);
-     
-  }
-  
-} 
 
+  // Assuming there's a method to add to cart
+  addToCart(product: Product): void {
+    console.log('Product added to cart:', product);
+    // Add to cart logic here
+  }
+}
 
 

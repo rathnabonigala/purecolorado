@@ -18,5 +18,9 @@ export class ProductService {
     console.log(Product);
     return this.httpClient.get<Product[]>(`${this.apiURL}`,{headers});
   }
+  public getProductById(productId: number): Observable<Product> {
+    // Corrected usage of apiURL and httpClient
+    return this.httpClient.get<Product>(`${this.apiURL}/${productId}`, { headers });
+  }
   
 }

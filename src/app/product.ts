@@ -15,5 +15,5 @@ export class Product {
     name!: string; // Changed from product_name to name (to match Spring Boot entity)
     price!: number; // Changed from product_price to price
     description!: string; // Changed from product_description to description
-    image!: string; // This will hold the Base64-encoded image from the backend
+    imageUrl!: string; // This will hold the Base64-encoded image from the backend
   }
