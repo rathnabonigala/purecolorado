@@ -1,3 +1,15 @@
-<p>payment works!</p>
-<button (click)="payNow()">Pay $50</button>
+<div class="container mt-4">
+  <h2>Payment</h2>
+  <p>Amount due: <strong>{{ amountCents / 100 | currency: 'USD' }}</strong></p>
 
+  <label class="form-label" for="card-element">Card details</label>
+  <!-- Stripe Elements mounts the secure card input into this div. -->
+  <div id="card-element" class="form-control py-2"></div>
+
+  <div *ngIf="errorMessage" class="text-danger mt-2" role="alert">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="text-success mt-2" role="status">{{ successMessage }}</div>
+
+  <button class="btn btn-primary mt-3" (click)="payNow()" [disabled]="processing || !cardReady">
+    {{ processing ? 'Processing…' : 'Pay ' + (amountCents / 100 | currency: 'USD') }}
+  </button>
+</div>

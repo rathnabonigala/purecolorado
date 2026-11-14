@@ -5,6 +5,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { HeaderComponent } from './header/header.component';
+import { PaymentComponent } from './payment/payment.component';
 
 // Define routes
 export const routes: Routes = [
@@ -14,6 +15,7 @@ export const routes: Routes = [
   
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'payment', component: PaymentComponent },
   { path: 'product-list', component: ProductListComponent },
   
   { path: '', redirectTo: '/product-list', pathMatch: 'full' },  // Optional default route
