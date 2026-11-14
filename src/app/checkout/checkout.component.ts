@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
@@ -26,10 +26,16 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit(): void {
     if (this.checkoutForm.valid) {
-      console.log('Order Placed Successfully:', this.checkoutForm.value);
-      alert('✅ Order placed successfully!');
-      this.checkoutForm.reset();
-      this.router.navigate(['/products']); // Navigate back to products or OrderConfirmation page
+      const method = this.checkoutForm.value.paymentMethod;
+      if (method === 'creditCard' || method === 'debitCard') {
+        // Card payments go through the Stripe payment page.
+        this.router.navigate(['/payment']);
+      } else {
+        console.log('Order Placed Successfully:', this.checkoutForm.value);
+        alert('✅ Order placed successfully!');
+        this.checkoutForm.reset();
+        this.router.navigate(['/products']); // Navigate back to products or OrderConfirmation page
+      }
     } else {
       alert('❌ Please fill in all required fields.');
     }
